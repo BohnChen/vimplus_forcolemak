@@ -22,7 +22,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 通用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = ","      " 定义<leader>键
+let mapleader = " "      " 定义<leader>键
 set nocompatible         " 设置不兼容原始vi模式
 filetype on              " 设置开启文件类型侦测
 filetype plugin on       " 设置加载对应文件类型的插件
@@ -70,6 +70,9 @@ set completeopt-=preview " 补全时不显示窗口，只显示补全列表
 set hlsearch            " 高亮显示搜索结果
 set incsearch           " 开启实时搜索功能
 set ignorecase          " 搜索时大小写不敏感
+nnoremap = n			" 设置向下跳转快捷键
+nnoremap - N			" 设置向上跳转快捷键
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 缓存设置
@@ -117,6 +120,55 @@ function! s:deregister(repo)
   call remove(g:plugs, name)
 endfunction
 command! -nargs=1 -bar UnPlug call s:deregister(<args>)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 设置colemak键盘布局导航键
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==================== Basic Mappings ====================
+noremap ; :						"设置
+nnoremap Q :q<CR>				"设置快捷退出
+nnoremap S :w<CR>				"设置快捷保存
+noremap l u						"设置撤回快捷键映射
+noremap k i						"设置输出快捷键
+noremap K I
+vnoremap Y "+y					"拷贝至系统剪切板
+noremap ,. %					"光标跳至一对符号的另一边
+vnoremap ki $%					"v模式下快速选择一对符号中的内容"
+nnoremap <LEADER>tt :%s/    /\t/g	 "将空格快速替换为tab
+vnoremap <LEADER>tt :s/    /\t/g     "将空格快速替换为tab 
+noremap <silent> <LEADER>o za   "折叠
+inoremap <c-y> <ESC>A {}<ESC>i<CR><ESC>ko  "行尾快速插入大括号并在大括号内输入
+" ==================== Cursor Movement ====================
+" New cursor movement (the default arrow keys are used for resizing windows)
+"     ^
+"     u
+" < n   i >
+"     e
+"     v
+noremap <silent> u k
+noremap <silent> n h
+noremap <silent> e j
+noremap <silent> i l
+noremap <silent> gu gk
+noremap <silent> ge gj
+noremap <silent> \v v$h
+" U/E keys for 5 times u/e (faster navigation)
+noremap <silent> U 5k
+noremap <silent> E 5j
+" N key: go to the start of the line
+noremap <silent> N 0
+" I key: go to the end of the line
+noremap <silent> I $
+" Faster in-line navigation
+noremap W 5w
+noremap B 5b
+" set h (same as n, cursor left) to 'end of word'
+noremap h e
+" Ctrl + U or E will move up/down the view port without moving the cursor
+noremap <C-U> 5<C-y>
+noremap <C-E> 5<C-e>
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件列表
