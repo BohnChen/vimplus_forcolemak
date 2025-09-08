@@ -70,8 +70,9 @@ set completeopt-=preview " 补全时不显示窗口，只显示补全列表
 set hlsearch            " 高亮显示搜索结果
 set incsearch           " 开启实时搜索功能
 set ignorecase          " 搜索时大小写不敏感
-nnoremap = n			" 设置向下跳转快捷键
-nnoremap - N			" 设置向上跳转快捷键
+noremap = n				" 设置向下跳转快捷键
+noremap - N				" 设置向上跳转快捷键
+noremap <LEADER><CR> :nohlsearch<CR> "取消高亮快捷键
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
